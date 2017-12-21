@@ -152,7 +152,7 @@ namespace TrueDating.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { Email = model.Email, Username = model.Username, Age = model.Age, City = model.City, Gender = model.Gender};
+                var user = new ApplicationUser { Email = model.Email, UserName = model.Username, Age = model.Age, City = model.City, Gender = model.Gender};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

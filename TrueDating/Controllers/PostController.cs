@@ -34,12 +34,12 @@ namespace TrueDating.Controllers
         {
 
 
-            var userNamn = User.Identity.Name;
-            var user = db.Users.Single(x => x.UserName == userNamn);
+            var userName = User.Identity.Name;
+            var user = db.Users.Single(x => x.UserName == userName);
             post.From = user;
 
-            var toUser = db.Users.Single(x => x.Id == id);
-            post.To = toUser;
+            //var toUser = db.Users.Single(x => x.Id == id);
+            //post.To = toUser;
 
             db.Posts.Add(post);
 
