@@ -17,7 +17,7 @@ namespace Logic
 
     public class ApplicationUser : IdentityUser
     {
-
+        public string Nickname { get; set; }
         public int Age { get; set; }
         public string City { get; set; }
         public Gender Gender { get; set; }

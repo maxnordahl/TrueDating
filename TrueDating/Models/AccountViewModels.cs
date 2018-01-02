@@ -82,7 +82,7 @@ namespace TrueDating.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        public string Username { get; set; }
+        public string Nickname { get; set; }
         public int Age { get; set; }
         public string City { get; set; }
         public Gender Gender { get; set; }
