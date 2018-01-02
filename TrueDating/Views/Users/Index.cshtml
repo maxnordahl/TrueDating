@@ -8,7 +8,14 @@
 
 <p>
     @Html.ActionLink("Create New", "Create")
+    </p>
+    <form asp-controller="Users" asp-action="Index" method="get">
+<p>
+    Sök efter användare: <input type="text" name="SearchString">
+    <input type="submit" value="Sök" />
 </p>
+</form>
+    </p>
 <table class="table">
     <tr>
         <th>
@@ -24,7 +31,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Nickname)
             </td>
-
+            
             <td>
                 @Html.ActionLink("Posts", "Index", "Posts", new { id = item.Id })
             </td>
