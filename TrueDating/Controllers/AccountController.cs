@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using TrueDating.Models;
 using Logic;
+using System.IO;
 
 namespace TrueDating.Controllers
 {
@@ -148,11 +149,24 @@ namespace TrueDating.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register([Bind(Exclude = "upload")]RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { Email = model.Email, UserName = model.Email, Age = model.Age, City = model.City, Gender = model.Gender, Nickname = model.Nickname};
+                byte[] imageData = null;
+                if (Request.Files["upload"].ContentLength > 0)
+                {
+                    HttpPostedFileBase poImgFile = Request.Files["upload"];
+
+
+                    using (var binary = new BinaryReader(poImgFile.InputStream))
+                    {
+                        imageData = binary.ReadBytes(poImgFile.ContentLength);
+                    }
+                }
+
+
+                var user = new ApplicationUser { Photo = imageData ,Email = model.Email, UserName = model.Email, Age = model.Age, City = model.City, Gender = model.Gender, Nickname = model.Nickname};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

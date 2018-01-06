@@ -22,7 +22,7 @@ namespace Logic
         public string City { get; set; }
         public Gender Gender { get; set; }
         public IEnumerable<Gender> GenderList { get; set; }
-
+        public byte[] Photo { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
