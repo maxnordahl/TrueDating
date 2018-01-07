@@ -35,7 +35,7 @@ namespace TrueDating.Controllers
         }
 
         public List<Post> ListPosts(string id)
-        {
+        { 
             var posts = db.Posts.Where(x => x.To.Id == id).ToList();
             return posts;
         }

@@ -17,6 +17,7 @@ namespace Logic
 
     public class ApplicationUser : IdentityUser
     {
+        public bool Hidden { get; set; } = false;
         public string Nickname { get; set; }
         public int Age { get; set; }
         public string City { get; set; }
@@ -24,6 +25,7 @@ namespace Logic
         public IEnumerable<Gender> GenderList { get; set; }
         public byte[] Photo { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
+        
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

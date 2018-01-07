@@ -17,7 +17,8 @@ namespace Logic
             return new ApplicationDbContext();
         }
         public DbSet<Post> Posts { get; set; }
+        public DbSet<FriendRequest> FriendRequest { get; set; }
 
-        
+
     }
 }

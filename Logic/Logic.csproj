@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="ApplicationUser.cs" />
+    <Compile Include="Friends.cs" />
     <Compile Include="FileType.cs" />
     <Compile Include="IdentityConfig.cs" />
     <Compile Include="Post.cs" />

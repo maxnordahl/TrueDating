@@ -10,11 +10,14 @@ using System.Web.Mvc;
 
 namespace TrueDating.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
-            return View();
+            var users = from u in db.Users
+                        select u;
+            var result = users.Take(5).ToList();
+            return View(result);
         }
 
         public ActionResult About()
@@ -72,5 +75,8 @@ namespace TrueDating.Controllers
 
             }
         }
+
+       
+
     }
 }

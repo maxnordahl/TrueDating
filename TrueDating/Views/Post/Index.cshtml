@@ -4,6 +4,8 @@
     ViewBag.Title = "Index";
 }
 
+@Html.BeginForm(FormMethod.Post))
+
 <h2>Index</h2>
 
 <p>
@@ -19,16 +21,16 @@
 
     @foreach (var item in Model.Posts)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.From.UserName):  @Html.DisplayFor(modelItem => item.Text)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
-            @Html.ActionLink("Details", "Details", new { id = item.Id })
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-        </td>
-    </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.From.UserName):  @Html.DisplayFor(modelItem => item.Text)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                @Html.ActionLink("Details", "Details", new { id = item.Id })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
     }
 
 </table>

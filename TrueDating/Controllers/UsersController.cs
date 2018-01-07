@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using Microsoft.AspNet.Identity;
 
 namespace TrueDating.Controllers
 {
@@ -19,18 +20,21 @@ namespace TrueDating.Controllers
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                users = users.Where(s => s.Nickname.Contains(searchString));
+                users = users.Where(s => s.Nickname.Contains(searchString) && s.Hidden == false);
             }
 
             return View(await users.ToListAsync());
             
         }
 
-        public ActionResult Index(string id)
+        public ActionResult Index()
         {
+            var userID = User.Identity.GetUserId();
+
             if(Request.IsAuthenticated)
             {
-                var postList = new PostsController().ListPosts(id);
+                
+                var postList = new PostsController().ListPosts(userID);
                 var postText = new List<string[]>();
 
                 foreach(Post post in postList)
@@ -41,7 +45,7 @@ namespace TrueDating.Controllers
                     postText.Add(textList);
                 }
                 ViewBag.List = postText;
-                var user = db.Users.Where(x => x.Id == id).SingleOrDefault() as ApplicationUser;
+                var user = db.Users.Where(x => x.Id == userID).SingleOrDefault() as ApplicationUser;
                 return View(user);
             }
             else
@@ -51,7 +55,11 @@ namespace TrueDating.Controllers
 
          }
 
-
+        public ActionResult UserInformation()
+        {
+            var information = db.Users.ToList();
+            return View(information);
+        }
         
 
 
