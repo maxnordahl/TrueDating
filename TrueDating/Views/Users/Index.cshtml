@@ -25,9 +25,9 @@
         {
 
         var Text = $('#Text').val();
-        var Sender = '@User.Identity.GetUserId()';
-        var Receiver = '@Model.Id';
-        var newPost = {SenderID: Sender, ReceiverID: Receiver, Text: Text};
+        var From = '@User.Identity.GetUserId()';
+        var To = '@Model.Id';
+        var newPost = {SenderID: From, ReceiverID: To, Text: Text};
             $.ajax({
                 type: 'POST',
                 url: '/api/UserPosts/',
