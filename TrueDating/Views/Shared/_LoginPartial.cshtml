@@ -7,9 +7,9 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Sök efter användare", "Index", "Users")
+            @Html.ActionLink("Sök efter användare", "SearchForUser", "Users")
         </li>
-        <li>@Html.ActionLink("Post", "Index", "Post")</li>
+        <li>@Html.ActionLink("Profil", "Index", "Users")</li>
         <li>
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>

@@ -81,11 +81,17 @@ namespace TrueDating.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-
+        [Required]
         public string Nickname { get; set; }
+        [Required]
         public int Age { get; set; }
+        [Required]
+        [DataType(DataType.Text)]
         public string City { get; set; }
         public Gender Gender { get; set; }
+        //[Required]
+        //[DataType (DataType.Upload)]
+        public byte[] Photo { get; set; }
     }
 
     public class ResetPasswordViewModel

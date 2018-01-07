@@ -1,46 +1,52 @@
-﻿@model IEnumerable<Logic.ApplicationUser>
+﻿@using Microsoft.AspNet.Identity;
+@model Logic.ApplicationUser
 
 @{
     ViewBag.Title = "Index";
 }
 
+
+<h1>
+
+    <img src="@Url.Action("UserPhotos", "Home" )" style="width:160px;height:160px; background: #FFFFFF;
+    margin: auto;
+    -moz-border-radius: 60px;
+    border-radius: 100px;
+    padding: 6px;
+    box-shadow: 0px 0px 20px #888;" />
+</h1>
+
+
+
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-    </p>
-    <form asp-controller="Users" asp-action="Index" method="get">
-<p>
-    Sök efter användare: <input type="text" name="SearchString">
-    <input type="submit" value="Sök" />
-</p>
-</form>
-    </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nickname)
-        </th>
+<script>
+        function AddPost()
+        {
 
-        <th></th>
-    </tr>
+        var Text = $('#Text').val();
+        var Sender = '@User.Identity.GetUserId()';
+        var Receiver = '@Model.Id';
+        var newPost = {SenderID: Sender, ReceiverID: Receiver, Text: Text};
+            $.ajax({
+                type: 'POST',
+                url: '/api/UserPosts/',
+                data: JSON.stringify(newPost),
+                contentType:'application/json',
+                datatype: 'json',
+                success: function (data) {
+                    $('#Text').val('');
+                    location.reload();
+                }
+            })
+        };
+</script>
+<div class="container, left">
+    <h3>Gör ett inlägg:</h3>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nickname)
-            </td>
-            
-            <td>
-                @Html.ActionLink("Posts", "Index", "Posts", new { id = item.Id })
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
-
-</table>
+    <div class="form-group">
+        <label for="comment"></label>
+        <textarea class="form-control" rows="5" id="Text"></textarea>
+        <button class="btn btn-default" onclick="AddPost()"> skicka</button>
+    </div>
+    </div>
