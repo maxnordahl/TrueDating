@@ -1,4 +1,5 @@
 ﻿using Logic;
+using Logic.Repositories;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
@@ -10,14 +11,28 @@ using System.Web.Mvc;
 
 namespace TrueDating.Controllers
 {
-    public class HomeController : BaseController
+    public class HomeController : Controller
     {
+        private UserRepository userRepository;
+        private PostRepository postRepository;
+        private FriendRepository friendRepository;
+
+        public HomeController()
+        {
+            ApplicationDbContext applicationDbContext = new ApplicationDbContext();
+            userRepository = new UserRepository(applicationDbContext);
+            
+            
+
+        }
         public ActionResult Index()
         {
-            var users = from u in db.Users
-                        select u;
-            var result = users.Take(5).ToList();
-            return View(result);
+            
+           // var user = userRepository.Get(User.Identity.GetUserId());
+            var users = userRepository.GetAll();
+            users.Take(5);
+
+            return View(users);
         }
 
         public ActionResult About()

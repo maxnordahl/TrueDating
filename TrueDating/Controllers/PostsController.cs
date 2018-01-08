@@ -13,10 +13,8 @@ namespace TrueDating.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-
-
         // GET: Post
-
+        
         public void AddPost([FromBody] PostIndexViewModel model)
         {
             Post newPost = new Post();
@@ -33,14 +31,13 @@ namespace TrueDating.Controllers
             db.Posts.Add(newPost);
             db.SaveChanges();
         }
-
+        
         public List<Post> ListPosts(string id)
         { 
             var posts = db.Posts.Where(x => x.To.Id == id).ToList();
-            return posts;
-        }
-
         
+            return posts;
+        }     
         }
 
         public class PostIndexViewModel

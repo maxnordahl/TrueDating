@@ -15,9 +15,16 @@ namespace Logic
             Female
         }
 
-    public class ApplicationUser : IdentityUser
+    public enum Visibility
     {
-        public bool Hidden { get; set; } = false;
+        Hidden,
+        Visible
+    }
+
+    public class ApplicationUser : IdentityUser, IEntity<string>
+    {
+        public Visibility Visibility { get; set; }
+        public IEnumerable<Visibility> VisibilityList { get; set; }
         public string Nickname { get; set; }
         public int Age { get; set; }
         public string City { get; set; }

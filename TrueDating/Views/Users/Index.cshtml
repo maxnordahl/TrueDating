@@ -1,98 +1,35 @@
-﻿@using Microsoft.AspNet.Identity;
-
-@Html.BeginForm(FormMethod.Post)
-
-@model Logic.ApplicationUser
+﻿@model TrueDating.Models.ProfileViewModel
 
 @{
     ViewBag.Title = "Index";
 }
 
-
-<h1>
-
-    <img src="@Url.Action("UserPhotos", "Home" )" style="width:160px;height:160px; background: #FFFFFF;
-    margin: auto;
-    -moz-border-radius: 60px;
-    border-radius: 100px;
-    padding: 6px;
-    box-shadow: 0px 0px 20px #888;" />
-</h1>
-
-
-
 <h2>Index</h2>
 
-<script>
-        function AddPost()
-        {
-
-        var Text = $('#Text').val();
-        var From = '@User.Identity.GetUserId()';
-        var To = '@Model.Id';
-        var newPost = {SenderID: From, ReceiverID: To, Text: Text};
-            $.ajax({
-                type: 'POST',
-                url: '/api/UserPosts/',
-                data: JSON.stringify(newPost),
-                contentType:'application/json',
-                datatype: 'json',
-                success: function (data) {
-                    $('#Text').val('');
-                    location.reload();
-                }
-            })
-        };
-</script>
-<div class="container, left">
-    <h3>Gör ett inlägg:</h3>
-
-    <div class="form-group">
-        <label for="comment"></label>
-        <textarea class="form-control" rows="5" id="Text"></textarea>
-        <button class="btn btn-default" onclick="AddPost()"> skicka</button>
-    </div>
-</div>
-
-<ul class="list-group">
-    @foreach(var item in ViewBag.List)
-    {
-        <li class="list-group-item">@item[2] <b>@item[0]</b> @item[1]</li>
-    }
-</ul>
-
-<table class="table">
-    <tr>
-        <th>
+<div>
+    <h4>ProfileViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
             @Html.DisplayNameFor(model => model.Nickname)
-        </th>
-        <th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nickname)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Age)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Gender)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
+        </dt>
 
-        <th></th>
-    </tr>
-    <tr>
-        <td>
-            @Model.Nickname
-        </td>
-        <td>
-            @Model.Age
-        </td>
-        <td>
-            @Model.Gender
-        </td>
-        <td>
-            @Model.City
-        </td>
-    </tr>
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
 
-
-</table>
-
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Posts", "Posts", "Users", null, new { id = Model.Id}) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

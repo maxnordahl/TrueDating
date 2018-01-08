@@ -8,9 +8,10 @@ namespace TrueDating.Models
 {
     public class FriendViewModel
     {
-        public string Nickname { get; set; }
+        public string Id { get; set; }
         public int Age { get; set; }
         public string City { get; set; }
+        public string Nickname { get; set; }
         public Gender Gender { get; set; }
         public IEnumerable<Gender> GenderList { get; set; }
         public byte[] Photo { get; set; }
