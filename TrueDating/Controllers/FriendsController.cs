@@ -29,11 +29,11 @@ namespace TrueDating.Controllers
         // GET: Friends
         public ActionResult Index(string id)
         {
-            var user = userRepository.Get(User.Identity.GetUserId());
+            var user = userRepository.Get(id);
             if (user == null)
                 return RedirectToAction("index");
 
-            var model = new FriendViewModel
+            var model = new ApplicationUser
             {
                 Id = user.Id,
                 Photo = user.Photo,
@@ -45,35 +45,32 @@ namespace TrueDating.Controllers
             return View(model);
         }
 
-        public ActionResult AcceptFriend(string id)
+        public ActionResult AcceptFriendRequest(string id)
         {
             var requestFriend = userRepository.Get(id);
             var acceptFriend = userRepository.Get(User.Identity.GetUserId());
 
-            var Friend = friendRepository.GetAll().Single(x => x.FriendFrom == requestFriend && x.FriendTo == acceptFriend);
+            var Friend = friendRepository.GetAll().Single(x => x.FriendTo == acceptFriend && x.FriendFrom == requestFriend);
 
-            Friends friends = new Friends();
-            {
-                friends.FriendFrom = requestFriend;
-                friends.FriendTo = acceptFriend;
-            }
+            Friend.FriendStatus = FriendStatus.Approved;
 
-            friendRepository.Add(friends);
-            friendRepository.Save();
             friendRepository.Delete(Friend.Id);
+            friendRepository.Add(Friend);
             friendRepository.Save();
+
+         
 
 
             return View("Error");
         }
 
-        public ActionResult DeclineFriend(string id)
+        public ActionResult DeclineFriendRequest(string id)
         {
 
             var requestFriend = userRepository.Get(id);
             var acceptFriend = userRepository.Get(User.Identity.GetUserId());
 
-            var Friend = friendRepository.GetAll().Single(x => x.FriendFrom == requestFriend && x.FriendTo == acceptFriend);
+            var Friend = friendRepository.GetAll().Single(x => x.FriendFrom.Equals(requestFriend) && x.FriendTo.Equals(acceptFriend));
 
             friendRepository.Delete(Friend.Id);
             friendRepository.Save();

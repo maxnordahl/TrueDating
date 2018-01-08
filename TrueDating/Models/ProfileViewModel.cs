@@ -18,6 +18,8 @@ namespace TrueDating.Models
         public Gender Gender { get; set; }
         [Display(Name = "Image")]
         public byte[] Image { get; set; }
+        [Display (Name = "City")]
+        public string City { get; set; }
 
 
     }

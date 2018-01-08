@@ -17,8 +17,8 @@ namespace Logic
 
     public enum Visibility
     {
-        Hidden,
-        Visible
+        Visible,
+        Hidden
     }
 
     public class ApplicationUser : IdentityUser, IEntity<string>
@@ -32,7 +32,7 @@ namespace Logic
         public IEnumerable<Gender> GenderList { get; set; }
         public byte[] Photo { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
-        
+        public virtual ICollection<Friends> Friends { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

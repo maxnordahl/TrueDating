@@ -89,8 +89,8 @@ namespace TrueDating.Models
         [DataType(DataType.Text)]
         public string City { get; set; }
         public Gender Gender { get; set; }
-        //[Required]
-        //[DataType (DataType.Upload)]
+        [Required]
+        [DataType (DataType.Upload)]
         public byte[] Photo { get; set; }
     }
 

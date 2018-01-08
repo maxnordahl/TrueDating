@@ -7,11 +7,18 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
+            @Html.ActionLink("Mina vänner", "FriendsList", "FriendRequests")
+        </li>
+        <li>
+            @Html.ActionLink("Vänförfrågningar", "FriendRequests", "FriendRequests")
+        </li>
+        <li>
             @Html.ActionLink("Sök efter användare", "SearchForUser", "Users")
         </li>
-        <li>@Html.ActionLink("Profil", "Index", "Users")</li>
+        <li>@Html.ActionLink("Profil", "Index", "Users")
+        </li>
         <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "EditProfile", "Users", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>

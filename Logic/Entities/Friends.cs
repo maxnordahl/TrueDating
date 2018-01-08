@@ -22,8 +22,8 @@ namespace Logic
         public virtual string FriendTo_Id { get; set; }
         public virtual ApplicationUser FriendTo { get; set; }
 
-        public FriendStatus FriendStatus { get; set; }
-        public DateTime RequestedDate { get; set; }
+        public FriendStatus FriendStatus { get; set;}
+
     }
 
     public enum FriendStatus

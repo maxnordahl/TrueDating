@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Logic.ApplicationUser>
+
+@{
+    ViewBag.Title = "FriendRequests";
+}
+
+<h2>FriendRequests</h2>
+
+
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Nickname)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Nickname)
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+
+@using (Html.BeginForm("FriendRequests", "FriendRequests", new { id = Model.Id }, FormMethod.Post, null))
+{
+    <input type="submit" value="Send friend request" />
+}
+
+
+
+
+

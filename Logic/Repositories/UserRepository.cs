@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Logic.Repositories
 {
-    public class UserRepository : Repository<ApplicationUser, string>
+    public class UserRepository : Repository<Logic.ApplicationUser, string>
     {
         public UserRepository(ApplicationDbContext context) : base(context)
         {

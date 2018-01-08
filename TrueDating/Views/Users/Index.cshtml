@@ -1,13 +1,23 @@
-﻿@model TrueDating.Models.ProfileViewModel
+﻿@model Logic.ApplicationUser
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h1>Min Profil</h1>
+<h2>
+
+    <img src="@Url.Action("UserPhotos", "Users" )" style="width:160px;height:160px; background: #FFFFFF;
+    margin: auto;
+    -moz-border-radius: 60px;
+    border-radius: 100px;
+    padding: 6px;
+    box-shadow: 0px 0px 20px #888;" />
+</h2>
+
 
 <div>
-    <h4>ProfileViewModel</h4>
+    <h4>Information</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -16,6 +26,18 @@
 
         <dd>
             @Html.DisplayFor(model => model.Nickname)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
         </dd>
 
         <dt>
@@ -28,8 +50,3 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Posts", "Posts", "Users", null, new { id = Model.Id}) |
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

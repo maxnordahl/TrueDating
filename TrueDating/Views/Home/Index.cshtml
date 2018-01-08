@@ -6,9 +6,7 @@
 
 <h2>Exempel användare:</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -22,13 +20,13 @@
         @if (User.Identity.IsAuthenticated)
         {
         <td>
-            @Html.ActionLink(item.Nickname, "Index", "Users", new { id = item.Id })
+            @Html.ActionLink(item.Nickname, "Index", "Friends", new { id = item.Id }, null)
         </td>
         }
         else
         {
             <td>
-                @Html.ActionLink(item.Nickname, "Register", "Account", new { id = item.Id })
+                @Html.ActionLink(item.Nickname, "Register", "Account")
             </td>
         }
     </tr>

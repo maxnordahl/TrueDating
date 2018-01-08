@@ -20,6 +20,5 @@ namespace Logic
         public DbSet<Post> Posts { get; set; }
         public DbSet<Friends> Friends { get; set; }
 
-        public System.Data.Entity.DbSet<Logic.ApplicationUser> ApplicationUsers { get; set; }
     }
 }
